@@ -1,10 +1,12 @@
 import React from "react";
+import Rating from "@material-ui/lab/Rating";
+
 import "./movie.css";
 
 const Movie = ({ details, showYourName }) => {
-  const { name, date, type, description, image } = details;
+  const { name, date, type, description, image, rating } = details;
   return (
-    <div onClick={()=>showYourName(name)}>
+    <div className="movieBox" onClick={() => showYourName(name)}>
       <div className="container">
         <div className="cellphone-container">
           <div className="movie">
@@ -28,17 +30,10 @@ const Movie = ({ details, showYourName }) => {
               </div>
               <div className="mr-grid summary-row">
                 <div className="col2">
-                  <h5>SUMMARY</h5>
+                  <Rating name="read-only" value={rating} readOnly />
                 </div>
                 <div className="col2">
-                  <ul className="movie-likes">
-                    <li>
-                      <i className="material-icons"></i>124
-                    </li>
-                    <li>
-                      <i className="material-icons"></i>3
-                    </li>
-                  </ul>
+                  <h5>SUMMARY</h5>
                 </div>
               </div>
               <div className="mr-grid">
@@ -47,9 +42,7 @@ const Movie = ({ details, showYourName }) => {
                 </div>
               </div>
               <div className="mr-grid actors-row">
-                <div className="col1">
-                  
-                </div>
+                <div className="col1"></div>
               </div>
               <div className="mr-grid action-row">
                 <div className="col2">
@@ -73,7 +66,6 @@ const Movie = ({ details, showYourName }) => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

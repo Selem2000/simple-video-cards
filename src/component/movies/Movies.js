@@ -1,16 +1,21 @@
 import React from "react";
+import SimpleModal from "./modal/Modal";
 import Movie from "./movie/Movie";
+
 import "./movies.css";
 
-const Movies = ({ Data }) => {
-    const showYourName = (name)=>{
-        alert(`movie name is ${name}`)
-    }
+const Movies = ({ Data, title, rating, addNewMovie }) => {
+  const showYourName = (name) => {
+    alert(`movie name is ${name}`);
+  };
   return (
     <div className="movies_liste">
-      {Data.map((movie) => (
-        <Movie details={movie} key={movie.id} showYourName={showYourName} />
-      ))}
+      {Data.filter((e) => e.name.toLowerCase().includes(title.toLowerCase()))
+        .filter((e) => e.rating >= rating)
+        .map((movie) => (
+          <Movie details={movie} key={movie.id} showYourName={showYourName} />
+        ))}
+      <SimpleModal addNewMovie={addNewMovie} />
     </div>
   );
 };

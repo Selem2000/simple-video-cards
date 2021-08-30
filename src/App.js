@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import Filter from "./component/filter/Filter";
 import Footer from "./component/footer/Footer";
 import Movies from "./component/movies/Movies";
 import SearchAppBar from "./component/navbar/Navbar";
 
 function App() {
-  let moviesData = [
+  const [moviesData, setmoviesData] = useState([
     {
       id: Math.random(),
       image:
@@ -85,11 +86,30 @@ function App() {
       description:
         "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.",
     },
-  ];
+  ]);
+  const [title, setTitle] = useState("");
+  const [rating, setRating] = useState(null);
+
+  let filtrageTitle = (title) => {
+    setTitle(title);
+  };
+  let filtrageRating = (rating) => {
+    setRating(rating);
+  };
+
+  let addNewMovie = (movie) => {
+    setmoviesData([...moviesData, movie]);
+  };
   return (
     <div>
       <SearchAppBar />
-      <Movies Data={moviesData} />
+      <Filter filtrageTitle={filtrageTitle} filtrageRating={filtrageRating} />
+      <Movies
+        Data={moviesData}
+        title={title}
+        rating={rating}
+        addNewMovie={addNewMovie}
+      />
       <Footer />
     </div>
   );

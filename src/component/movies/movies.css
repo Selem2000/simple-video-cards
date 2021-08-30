@@ -1,6 +1,6 @@
 .movies_liste {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   padding: 5%;
 }
